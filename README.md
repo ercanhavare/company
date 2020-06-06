@@ -1,7 +1,7 @@
-# company
+# ABC Company
 <p>This project is interview challenge. 
 Using one of popular PHP framework called "Symfony". <br> 
-For the setup project please follow below steps: </p>
+For the project setup please follow below steps: </p>
 
 ### 1) Clone project from github 
 <p> git clone git@github.com:ercanhavare/company.git </p>
