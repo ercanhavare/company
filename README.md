@@ -1,6 +1,6 @@
 # ABC Company
 <p>This project is interview challenge. 
-Using one of popular PHP framework called "Symfony". <br> 
+Using one of popular PHP framework called "Symfony 4". <br> 
 For the project setup please follow below steps: </p>
 
 ### 1) Clone project from github 
