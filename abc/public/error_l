@@ -1,0 +1,18 @@
+[06-Jun-2020 20:20:48 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\FormatException: Missing = in the environment variable declaration in "/var/www/individual-vocabulary/.env" at line 40.
+...77aab2cf96\ntoken_ttl: 3600\n###< lexik/jw...
+                       ^ line 40 offset 1961 in /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php:503
+Stack trace:
+#0 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(240): Symfony\Component\Dotenv\Dotenv->createFormatException('Missing = in th...')
+#1 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(195): Symfony\Component\Dotenv\Dotenv->lexVarname()
+#2 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(513): Symfony\Component\Dotenv\Dotenv->parse('# In all enviro...', '/var/www/indivi...')
+#3 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(65): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
+#4 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(85): Symfony\Component\Dotenv\Dotenv->load('/var/www/indivi...') in /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php on line 503
+[06-Jun-2020 20:21:21 Asia/Riyadh] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\FormatException: Missing = in the environment variable declaration in "/var/www/individual-vocabulary/.env" at line 40.
+...b2cf96\nJWT_TOKEN_TTL: 3600\n###< lexik/jw...
+                       ^ line 40 offset 1965 in /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php:503
+Stack trace:
+#0 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(240): Symfony\Component\Dotenv\Dotenv->createFormatException('Missing = in th...')
+#1 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(195): Symfony\Component\Dotenv\Dotenv->lexVarname()
+#2 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(513): Symfony\Component\Dotenv\Dotenv->parse('# In all enviro...', '/var/www/indivi...')
+#3 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(65): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
+#4 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(85): Symfony\Component\Dotenv\Dotenv->load('/var/www/indivi...') in /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php on line 503

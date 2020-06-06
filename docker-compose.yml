@@ -1,0 +1,38 @@
+version: '3.2'
+services:
+    php:
+        build: ./php-fpm
+        volumes:
+            - ./abc:/var/www/abc
+            - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+            - ./assets/abc-gc-project.json:/var/www/abc-gc-project.json
+        environment:
+            GOOGLE_APPLICATION_CREDENTIALS: /var/www/abc-gc-project.json
+        depends_on:
+            - mysql
+    web:
+        image: nginx:latest
+        ports:
+            - "8888:80"
+        volumes:
+            - ./abc:/var/www/abc
+            - ./nginx/abc.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - php
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: symf0ny
+        ports:
+            - "3333:3306"
+    phpmyadmin:
+        depends_on:
+            - mysql
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - 8088:80
+        environment:
+            PMA_HOST: mysql
+            MYSQL_ROOT_PASSWORD: symf0ny
