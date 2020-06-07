@@ -1,13 +1,11 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -22,8 +20,15 @@ class AuthController extends ApiController
         $password = $request->get('password');
         $email = $request->get('email');
 
-        if (empty($username) || empty($password) || empty($email)){
+        if (empty($username) || empty($password) || empty($email)) {
             return $this->respondValidationError("Invalid Username or Password or Email");
+        }
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $has_user = $repository->findOneBy(['username' => $username]);
+
+        if ($has_user) {
+            return new JsonResponse(["message" => "This username has been taken."]);
         }
 
         $user = new User();

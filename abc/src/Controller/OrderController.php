@@ -4,29 +4,49 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class OrderController extends AbstractController
 {
     /**
-     * @Route("/order", name="order")
+     * @Route("/api/order", name="index", methods={"GET"})
+     * @param UserInterface $user
+     * @return Response
      */
-    public function index()
+    public function index(UserInterface $user)
     {
-        return $this->render('order/index.html.twig', [
-            'controller_name' => 'OrderController',
-        ]);
+        try {
+            $user_id = $user->getId();
+            $repository = $this->getDoctrine()->getRepository(Order::class);
+            $order = $repository->findBy(['user_id' => $user_id]);
+
+            if (!$order) {
+                return new JsonResponse(["message" => "Order not found !"]);
+            }
+            return new Response($this->json($order), Response::HTTP_OK);
+        } catch (Exception $exception) {
+            return new JsonResponse(["error: " => "Oops! Something went wrong..."]);
+        }
+
+    }
+
+    public function create()
+    {
+
     }
 
     /**
-     * @Route("/order/create", name="create_order")
+     * @Route("/api/order", name="store_order", methods={"POST"})
      * @param Request $request
+     * @param UserInterface $user
      * @return Response
      */
-    public function createOrder(Request $request): Response
+    public function store(Request $request, UserInterface $user): Response
     {
         try {
             // you can fetch the EntityManager via $this->getDoctrine()
@@ -38,48 +58,66 @@ class OrderController extends AbstractController
             $order->setShippingDate($request->get("shippingDate"));
             $order->setAddress($request->get("address"));
             $order->setProductId($request->get("product_id"));
-            $order->setUserId($request->get("user_id"));
+            $order->setUserId($user->getId());
             $order->setQuantity($request->get("quantity"));
-
-
-            // tell Doctrine you want to (eventually) save the Product (no queries yet)
             $entityManager->persist($order);
-
-            // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
 
-            return new Response('Saved your order with order code ' . $order->getOrderCode());
+            return new JsonResponse(["message" => "Your order has been received with order code " . $order->getOrderCode()]);
         } catch (\Exception $exception) {
-            dd($exception->getMessage());
+            return new JsonResponse(["error: " => "Oops! Something went wrong..."]);
         }
     }
 
     /**
-     * @Route("/order/{orderCode}/edit", name="order_edit")
+     * @Route("/order/{orderCode}", name="order_show", methods={"GET"})
+     * @param $orderCode
+     * @return object|string
+     */
+    public function show($orderCode)
+    {
+        try {
+            $repository = $this->getDoctrine()->getRepository(Order::class);
+            $order = $repository->findOneBy(['orderCode' => $orderCode]);
+
+            if (!$order) {
+                throw $this->createNotFoundException('No order found !');
+            }
+            return new Response($this->json($order), Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            return new JsonResponse(["error: " => "Oops! Something went wrong..."]);
+        }
+    }
+
+    public function edit()
+    {
+
+    }
+
+    /**
+     * @Route("/order/{orderCode}", name="order_update", methods={"PUT"})
      * @param Request $request
      * @return Response
      */
-    public function editOrder(Request $request): Response
+    public function update(Request $request): Response
     {
         try {
             $repository = $this->getDoctrine()->getRepository(Order::class);
             $order = $repository->findOneBy(['orderCode' => $request->get("orderCode")]);
 
             if (!$order) {
-                throw $this->createNotFoundException(
-                    'No product found for order code ' . $order->getOrderCode()
-                );
+                throw $this->createNotFoundException('No order found !');
             }
 
             $date = date_create($order->getShippingDate());
-            $order_date = date_format($date, 'Y-m-d');
+            $shipping_date = date_format($date, 'Y-m-d');
 
             $now = new \DateTime();
             $now_date = $now->format("Y-m-d");
 
 
-            if ($order_date > $now_date){
-                return new Response('You could not edit your order! ' . $order_date);
+            if ($shipping_date > $now_date) {
+                return new Response('Your shipping date of order is passed. You can not update !' . $shipping_date);
             }
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -95,47 +133,13 @@ class OrderController extends AbstractController
 
             return new Response('Updated your order with order code ' . $now_date);
         } catch (\Exception $exception) {
-            dd($exception);
+            return new JsonResponse(["error: " => "Oops! Something went wrong..."]);
         }
     }
 
-    /**
-     * @Route("/order/{orderCode}", name="order_show")
-     * @param $orderCode
-     * @return object|string
-     */
-    public function show($orderCode)
+    public function destroy()
     {
-        $repository = $this->getDoctrine()->getRepository(Order::class);
-        $order = $repository->findOneBy(['orderCode' => $orderCode]);
-
-        if (!$order) {
-            throw $this->createNotFoundException(
-                'No product found for order code ' . $order->getOrderCode()
-            );
-        }
-
-       dd($order);
 
     }
 
-    /**
-     * @Route("/orders/{user_id}", name="order_fetch")
-     * @param $user_id
-     * @return object|string
-     */
-    public function all($user_id)
-    {
-        $repository = $this->getDoctrine()->getRepository(Order::class);
-        $order = $repository->findOneBy(['user_id' => $user_id]);
-
-        if (!$order) {
-            throw $this->createNotFoundException(
-                'No product found for order code ' . $order->getOrderCode()
-            );
-        }
-
-        dd($order);
-
-    }
 }
