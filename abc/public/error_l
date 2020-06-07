@@ -16,3 +16,51 @@ Stack trace:
 #2 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(513): Symfony\Component\Dotenv\Dotenv->parse('# In all enviro...', '/var/www/indivi...')
 #3 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(65): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
 #4 /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php(85): Symfony\Component\Dotenv\Dotenv->load('/var/www/indivi...') in /var/www/individual-vocabulary/vendor/symfony/dotenv/Dotenv.php on line 503
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP Fatal error:  Class Symfony\Component\Security\Core\User\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Symfony\Component\Security\Core\User\UserInterface::getId) in /var/www/abc/vendor/symfony/security-core/User/User.php on line 21
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP Stack trace:
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   1. {main}() /var/www/abc/public/index.php:0
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   2. App\Kernel->handle() /var/www/abc/public/index.php:25
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/abc/vendor/symfony/http-kernel/Kernel.php:201
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:80
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   5. Gesdinet\JWTRefreshTokenBundle\Service\RefreshToken->refresh() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:158
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   6. Gesdinet\JWTRefreshTokenBundle\Security\Authenticator\RefreshTokenAuthenticator->getUser() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Service/RefreshToken.php:126
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   7. Gesdinet\JWTRefreshTokenBundle\Security\Provider\RefreshTokenProvider->loadUserByUsername() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Authenticator/RefreshTokenAuthenticator.php:79
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   8. spl_autoload_call() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP   9. Symfony\Component\ErrorHandler\DebugClassLoader->loadClass() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:28:09 Asia/Riyadh] PHP  10. include() /var/www/abc/vendor/symfony/error-handler/DebugClassLoader.php:337
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP Fatal error:  Class Symfony\Component\Security\Core\User\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Symfony\Component\Security\Core\User\UserInterface::getId) in /var/www/abc/vendor/symfony/security-core/User/User.php on line 21
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP Stack trace:
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   1. {main}() /var/www/abc/public/index.php:0
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   2. App\Kernel->handle() /var/www/abc/public/index.php:25
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/abc/vendor/symfony/http-kernel/Kernel.php:201
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:80
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   5. Gesdinet\JWTRefreshTokenBundle\Service\RefreshToken->refresh() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:158
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   6. Gesdinet\JWTRefreshTokenBundle\Security\Authenticator\RefreshTokenAuthenticator->getUser() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Service/RefreshToken.php:126
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   7. Gesdinet\JWTRefreshTokenBundle\Security\Provider\RefreshTokenProvider->loadUserByUsername() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Authenticator/RefreshTokenAuthenticator.php:79
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   8. spl_autoload_call() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP   9. Symfony\Component\ErrorHandler\DebugClassLoader->loadClass() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:28:56 Asia/Riyadh] PHP  10. include() /var/www/abc/vendor/symfony/error-handler/DebugClassLoader.php:337
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP Fatal error:  Class Symfony\Component\Security\Core\User\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Symfony\Component\Security\Core\User\UserInterface::getId) in /var/www/abc/vendor/symfony/security-core/User/User.php on line 21
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP Stack trace:
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   1. {main}() /var/www/abc/public/index.php:0
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   2. App\Kernel->handle() /var/www/abc/public/index.php:25
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/abc/vendor/symfony/http-kernel/Kernel.php:201
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:80
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   5. Gesdinet\JWTRefreshTokenBundle\Service\RefreshToken->refresh() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:158
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   6. Gesdinet\JWTRefreshTokenBundle\Security\Authenticator\RefreshTokenAuthenticator->getUser() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Service/RefreshToken.php:126
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   7. Gesdinet\JWTRefreshTokenBundle\Security\Provider\RefreshTokenProvider->loadUserByUsername() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Authenticator/RefreshTokenAuthenticator.php:79
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   8. spl_autoload_call() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP   9. Symfony\Component\ErrorHandler\DebugClassLoader->loadClass() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:33:57 Asia/Riyadh] PHP  10. include() /var/www/abc/vendor/symfony/error-handler/DebugClassLoader.php:337
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP Fatal error:  Class Symfony\Component\Security\Core\User\User contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (Symfony\Component\Security\Core\User\UserInterface::getId) in /var/www/abc/vendor/symfony/security-core/User/User.php on line 21
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP Stack trace:
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   1. {main}() /var/www/abc/public/index.php:0
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   2. App\Kernel->handle() /var/www/abc/public/index.php:25
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/abc/vendor/symfony/http-kernel/Kernel.php:201
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:80
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   5. Gesdinet\JWTRefreshTokenBundle\Service\RefreshToken->refresh() /var/www/abc/vendor/symfony/http-kernel/HttpKernel.php:158
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   6. Gesdinet\JWTRefreshTokenBundle\Security\Authenticator\RefreshTokenAuthenticator->getUser() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Service/RefreshToken.php:126
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   7. Gesdinet\JWTRefreshTokenBundle\Security\Provider\RefreshTokenProvider->loadUserByUsername() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Authenticator/RefreshTokenAuthenticator.php:79
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   8. spl_autoload_call() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP   9. Symfony\Component\ErrorHandler\DebugClassLoader->loadClass() /var/www/abc/vendor/gesdinet/jwt-refresh-token-bundle/Security/Provider/RefreshTokenProvider.php:62
+[07-Jun-2020 11:34:42 Asia/Riyadh] PHP  10. include() /var/www/abc/vendor/symfony/error-handler/DebugClassLoader.php:337

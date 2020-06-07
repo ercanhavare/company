@@ -70,7 +70,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/order/{orderCode}", name="order_show", methods={"GET"})
+     * @Route("/api/order/{orderCode}", name="order_show", methods={"GET"})
      * @param $orderCode
      * @return object|string
      */
@@ -81,7 +81,7 @@ class OrderController extends AbstractController
             $order = $repository->findOneBy(['orderCode' => $orderCode]);
 
             if (!$order) {
-                throw $this->createNotFoundException('No order found !');
+                return new JsonResponse(["message" => "Order not found !"]);
             }
             return new Response($this->json($order), Response::HTTP_OK);
         } catch (\Exception $exception) {
@@ -95,18 +95,19 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/order/{orderCode}", name="order_update", methods={"PUT"})
+     * @Route("/api/order/edit/{order_code}", name="order_update", methods={"PUT"})
      * @param Request $request
+     * @param $order_code
      * @return Response
      */
-    public function update(Request $request): Response
+    public function update(Request $request, $order_code): Response
     {
         try {
             $repository = $this->getDoctrine()->getRepository(Order::class);
-            $order = $repository->findOneBy(['orderCode' => $request->get("orderCode")]);
+            $order = $repository->findOneBy(['orderCode' => $order_code]);
 
             if (!$order) {
-                throw $this->createNotFoundException('No order found !');
+                return new JsonResponse(["message" => "Order not found !"]);
             }
 
             $date = date_create($order->getShippingDate());
@@ -115,9 +116,8 @@ class OrderController extends AbstractController
             $now = new \DateTime();
             $now_date = $now->format("Y-m-d");
 
-
-            if ($shipping_date > $now_date) {
-                return new Response('Your shipping date of order is passed. You can not update !' . $shipping_date);
+            if ($shipping_date < $now_date) {
+                return new Response('Your shipping date of order is passed. You can not update ! Shipping date : ' . $shipping_date);
             }
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -131,13 +131,13 @@ class OrderController extends AbstractController
 
             $entityManager->flush();
 
-            return new Response('Updated your order with order code ' . $now_date);
+            return new Response('Your order has been updated with this order code : ' . $order_code);
         } catch (\Exception $exception) {
             return new JsonResponse(["error: " => "Oops! Something went wrong..."]);
         }
     }
 
-    public function destroy()
+    public function destroy($order_code)
     {
 
     }
